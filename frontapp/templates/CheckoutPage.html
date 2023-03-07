@@ -1,0 +1,482 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--    <title>Bootstrap 5 Checkout Form Example</title>-->
+    <!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+
+	<!-- Demo CSS (No need to include it into your project) -->
+	<link rel="stylesheet" href="css/demo.css">
+
+  </head>
+  <body>
+<!-- <header class="intro">-->
+<!-- <h1> Bootstrap 5 Checkout Form Example </h1>-->
+<!-- <p> A checkout form page with Bootstrap native input fields.</p>-->
+
+<!-- <div class="action">-->
+<!-- <a href="https://www.codehim.com/bootstrap/bootstrap-forms/bootstrap-5-checkout-form-page/" title="Back to download and tutorial page" class="btn back">Back to Tutorial</a>-->
+
+<!-- </div>-->
+
+<!-- </header>-->
+
+ <main>
+
+     <!-- DEMO HTML -->
+     <div class="container">
+  <div class="py-5 text-center">
+
+    <h2>Checkout Form</h2>
+<!--    <p class="lead">Below is an example form built entirely with Bootstrap 5 form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>-->
+  </div>
+
+  <div class="row">
+<!--    <div class="col-md-4 order-md-2 mb-4">-->
+<!--      <h4 class="d-flex justify-content-between align-items-center mb-3">-->
+<!--        <span class="text-muted">Your cart</span>-->
+<!--        <span class="badge badge-secondary badge-pill">3</span>-->
+<!--      </h4>-->
+<!--      <ul class="list-group mb-3">-->
+<!--        <li class="list-group-item d-flex justify-content-between lh-condensed">-->
+<!--          <div>-->
+<!--            <h6 class="my-0">Product name</h6>-->
+<!--            <small class="text-muted">Brief description</small>-->
+<!--          </div>-->
+<!--          <span class="text-muted">$12</span>-->
+<!--        </li>-->
+<!--        <li class="list-group-item d-flex justify-content-between lh-condensed">-->
+<!--          <div>-->
+<!--            <h6 class="my-0">Second product</h6>-->
+<!--            <small class="text-muted">Brief description</small>-->
+<!--          </div>-->
+<!--          <span class="text-muted">$8</span>-->
+<!--        </li>-->
+<!--        <li class="list-group-item d-flex justify-content-between lh-condensed">-->
+<!--          <div>-->
+<!--            <h6 class="my-0">Third item</h6>-->
+<!--            <small class="text-muted">Brief description</small>-->
+<!--          </div>-->
+<!--          <span class="text-muted">$5</span>-->
+<!--        </li>-->
+<!--        <li class="list-group-item d-flex justify-content-between bg-light">-->
+<!--          <div class="text-success">-->
+<!--            <h6 class="my-0">Promo code</h6>-->
+<!--            <small>EXAMPLECODE</small>-->
+<!--          </div>-->
+<!--          <span class="text-success">-$5</span>-->
+<!--        </li>-->
+<!--        <li class="list-group-item d-flex justify-content-between">-->
+<!--          <span>Total (USD)</span>-->
+<!--          <strong>$20</strong>-->
+<!--        </li>-->
+<!--      </ul>-->
+
+<!--      <form class="card p-2">-->
+<!--        <div class="input-group">-->
+<!--          <input type="text" class="form-control" placeholder="Promo code">-->
+<!--          <div class="input-group-append">-->
+<!--            <button type="submit" class="btn btn-secondary">Redeem</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </div>-->
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Billing address</h4>
+      <form class="needs-validation" method="POST" action="{% url 'savecheckout' %}" enctype="multipart/form-data">
+         {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">First name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="" value="" name="fname" required>
+            <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Last name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="" value="" name="lname" required>
+            <div class="invalid-feedback">
+              Valid last name is required.
+            </div>
+          </div>
+        </div>
+
+<!--        <div class="mb-3">-->
+<!--          <label for="username">Username</label>-->
+<!--          <div class="input-group">-->
+<!--            <div class="input-group-prepend">-->
+<!--              <span class="input-group-text">@</span>-->
+<!--            </div>-->
+<!--            <input type="text" class="form-control" id="username" placeholder="Username" required>-->
+<!--            <div class="invalid-feedback" style="width: 100%;">-->
+<!--              Your username is required.-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <div class="mb-3">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+          <div class="invalid-feedback">
+            Please enter a valid email address for shipping updates.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="address">Address</label>
+          <input type="text" class="form-control" id="address" placeholder="Address" name="address" required>
+          <div class="invalid-feedback">
+            Please enter your shipping address.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="address2">Landmark <span class="text-muted"></span></label>
+          <input type="text" class="form-control" id="address2" placeholder="Landmark" name="landmark">
+        </div>
+
+        <div class="row">
+          <div class="col-md-5 mb-3">
+            <label for="country">State</label>
+            <select class="custom-select d-block w-100" id="country" name="state" required>
+              <option value="">Choose...</option>
+              <option>Kerala</option>
+            </select>
+            <div class="invalid-feedback">
+              Please select a valid country.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="state">City</label>
+            <select class="custom-select d-block w-100" id="state" name="city" required>
+              <option value="">Choose...</option>
+              <option>Malappuram</option>
+              <option></option>
+              <option></option>
+              <option></option>
+
+            </select>
+            <div class="invalid-feedback">
+              Please provide a valid state.
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="zip">Pincode</label>
+            <input type="text" class="form-control" id="zip" placeholder="" name="pincd" required>
+            <div class="invalid-feedback">
+              Zip code required.
+            </div>
+          </div>
+        </div>
+        <hr class="mb-4">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="same-address">
+          <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="save-info">
+          <label class="custom-control-label" for="save-info">Save this information for next time</label>
+        </div>
+        <hr class="mb-4">
+
+        <h4 class="mb-3">Payment</h4>
+
+        <div class="d-block my-3">
+          <div class="custom-control custom-radio">
+            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+            <label class="custom-control-label" for="credit">Credit card</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+            <label class="custom-control-label" for="debit">Debit card</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+            <label class="custom-control-label" for="paypal">Cash On Delivery</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="cc-name">Name on card</label>
+            <input type="text" class="form-control" id="cc-name" placeholder="" required>
+            <small class="text-muted">Full name as displayed on card</small>
+            <div class="invalid-feedback">
+              Name on card is required
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="cc-number">Credit card number</label>
+            <input type="text" class="form-control" id="cc-number" placeholder="" required>
+            <div class="invalid-feedback">
+              Credit card number is required
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="cc-expiration">Expiration</label>
+            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+            <div class="invalid-feedback">
+              Expiration date required
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="cc-cvv">CVV</label>
+            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+            <div class="invalid-feedback">
+              Security code required
+            </div>
+          </div>
+        </div>
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Proceed</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2023 - 2030 Fresh Juice</p>
+<!--    <ul class="list-inline">-->
+<!--      <li class="list-inline-item"><a href="#">Privacy</a></li>-->
+<!--      <li class="list-inline-item"><a href="#">Terms</a></li>-->
+<!--      <li class="list-inline-item"><a href="#">Support</a></li>-->
+<!--    </ul>-->
+  </footer>
+</div>
+     <!-- End Demo HTML -->
+
+ </main>
+
+  <footer class="credit">Author: Manasseh El Bey - Distributed By: <a title="Awesome web design code & scripts" href="https://www.codehim.com?source=demo-page" target="_blank">CodeHim</a></footer>
+
+<!-- Bootstrap 5 JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+
+<!--   alert-->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+   {% if messages %}
+  {% for message in messages %}
+
+   {% if message.tags == 'warning' %}
+   <script>
+     swal('{{message}}','','warning');
+   </script>
+
+   {% elif message.tags == 'error' %}
+   <script>
+     swal('{{message}}','','error');
+   </script>
+
+   {% else%}
+   <script>
+     swal('{{message}}','','success');
+   </script>
+
+   {% endif %}
+
+   {% endfor %} {% endif %}
+
+
+  </body>
+<style>
+
+
+ @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+*{ margin: 0; padding: 0;}
+body{
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-smoothing: antialiased;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+  background: #fff;
+}
+.intro{
+   background: #fff;
+   padding: 60px 30px;
+   color: #333;
+   margin-bottom: 15px;
+   line-height: 1.5;
+   text-align: center;
+}
+.intro h1 {
+   font-size: 18pt;
+   padding-bottom: 15px;
+
+}
+.intro p{
+   font-size: 14px;
+}
+
+.action{
+   text-align: center;
+   display: block;
+   margin-top: 20px;
+}
+
+a.btn {
+  text-decoration: none;
+  color: #666;
+   border: 2px solid #666;
+   padding: 10px 15px;
+   display: inline-block;
+   margin-left: 5px;
+}
+a.btn:hover{
+   background: #666;
+   color: #fff;
+    transition: .3s;
+-webkit-transition: .3s;
+}
+.btn:before{
+  font-family: FontAwesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+.github:before{content: "\f09b"}
+.down:before{content: "\f019"}
+.back:before{content:"\f112"}
+.credit{
+    background: #fff;
+    padding: 12px;
+    font-size: 9pt;
+    text-align: center;
+    color: #333;
+    margin-top: 40px;
+
+}
+.credit span:before{
+   font-family: FontAwesome;
+   color: #e41b17;
+   content: "\f004";
+
+
+}
+.credit a{
+   color: #333;
+   text-decoration: none;
+}
+.credit a:hover{
+   color: #1DBF73;
+}
+.credit a:hover:after{
+    font-family: FontAwesome;
+    content: "\f08e";
+    font-size: 9pt;
+    position: absolute;
+    margin: 3px;
+}
+main{
+  background: #fff;
+  padding:: 20px;
+
+}
+
+article li{
+   color: #444;
+   font-size: 15px;
+   margin-left: 33px;
+   line-height: 1.5;
+   padding: 5px;
+}
+article h1,
+article h2,
+article h3,
+article h4,
+article p{
+   padding: 14px;
+   color: #333;
+}
+article p{
+   font-size: 15px;
+    line-height: 1.5;
+}
+
+@media only screen and (min-width: 1280px){
+    main{
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 24px;
+    }
+
+
+}
+
+.set-overlayer,
+.set-glass,
+.set-sticky {
+	cursor: pointer;
+	height: 45px;
+	line-height: 45px;
+	padding: 0 15px;
+	color: #333;
+	font-size: 16px;
+}
+.set-overlayer:after,
+.set-glass:after,
+.to-active:after,
+.set-sticky:after {
+	font-family: FontAwesome;
+	font-size: 18pt;
+	position: relative;
+	float: right;
+}
+.set-overlayer:after,
+.set-glass:after,
+.set-sticky:after {
+	content: "\f204";
+	transition: .6s;
+}
+
+.to-active:after {
+	content: "\f205";
+	color: #008080;
+	transition: .6s;
+}
+.set-overlayer,
+.set-glass,
+.set-sticky,
+.source,
+.theme-tray {
+	margin: 10px;
+	background: #f2f2f2;
+	border-radius: 5px;
+	border: 2px solid #f1f1f1;
+	box-sizing: border-box;
+}
+/* Syntax Highlighter*/
+
+pre.prettyprint {
+	padding: 15px !important;
+   margin: 10px;
+	border: 0 !important;
+  background: #f2f2f2;
+  overflow: auto;
+}
+
+.source {
+	white-space: pre;
+	overflow: auto;
+	max-height: 400px;
+}
+code{
+    border:1px solid #ddd;
+    padding: 2px;
+    border-radius: 2px;
+}
+
+
+
+</style>
+</html>

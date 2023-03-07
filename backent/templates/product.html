@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+                  <div class="card-body">
+                    <h4 class="card-title">Add products</h4>
+                    <form class="forms-sample" method="POST" action="{% url 'productsavepage' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name"><br>
+                      </div>
+                   <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputName" placeholder="Prize" name="prize"><br>
+                      </div>
+                       <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputName2" placeholder="quantity" name="quantity"><br>
+                      </div>
+
+                      <div class="form-group">
+                        <select class="form-control" id="exampleSelectGender" name="category">
+                          <option>select</option>
+                            {% for d in data %}
+                          <option>{{ d.Name }}</option>
+                            {% endfor %}
+                        </select><br>
+                      </div>
+                       <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputName3" placeholder="description" name="description"><br>
+                      </div>
+                        <div>
+                            <input type="file" name="image">
+                        </div>
+
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+</body>
+</html>
+{% endblock %}
